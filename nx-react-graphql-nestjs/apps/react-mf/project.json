@@ -1,0 +1,99 @@
+{
+  "name": "react-mf",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/react-mf/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/react-mf",
+        "index": "apps/react-mf/src/index.html",
+        "baseHref": "/",
+        "main": "apps/react-mf/src/main.ts",
+        "polyfills": "apps/react-mf/src/polyfills.ts",
+        "tsConfig": "apps/react-mf/tsconfig.app.json",
+        "assets": ["apps/react-mf/src/favicon.ico", "apps/react-mf/src/assets"],
+        "styles": ["apps/react-mf/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "apps/react-mf/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/react-mf/src/environments/environment.ts",
+              "with": "apps/react-mf/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/react-mf/webpack.config.prod.js"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "react-mf:build",
+        "hmr": true,
+        "port": 4201
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "react-mf:build:development"
+        },
+        "production": {
+          "buildTarget": "react-mf:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/react-mf/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/react-mf/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "react-mf:build",
+        "port": 4201
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "react-mf:build:development"
+        },
+        "production": {
+          "buildTarget": "react-mf:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
