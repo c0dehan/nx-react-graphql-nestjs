@@ -54,8 +54,12 @@
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
+    "@nestjs/graphql": "^10.1.7",
     "@nestjs/platform-express": "^9.0.0",
+    "apollo-server-express": "^3.11.1",
     "core-js": "^3.6.5",
+    "graphql": "^16.6.0",
+    "graphql-tools": "^8.3.14",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "6.4.3",
