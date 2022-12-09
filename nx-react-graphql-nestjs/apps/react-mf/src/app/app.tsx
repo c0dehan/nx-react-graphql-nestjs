@@ -1,14 +1,19 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
-import NxWelcome from './nx-welcome';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  gql,
+} from '@apollo/client';
 
-export function App() {
-  return (
-    <>
-      <NxWelcome title="react-mf" />
-      <div />
-    </>
-  );
-}
+const client = new ApolloClient({
+  uri: 'http://localhost:3333/graphql',
+  cache: new InMemoryCache(),
+});
+
+const App = () => (
+  <ApolloProvider client={client}>
+    <h1>My Lego Sets</h1>
+  </ApolloProvider>
+);
 
 export default App;
