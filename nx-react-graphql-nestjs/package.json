@@ -5,11 +5,15 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
+    "generate": "nx run data-access:generate",
     "test": "nx test"
   },
   "private": true,
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
+    "@graphql-codegen/cli": "^2.16.1",
+    "@graphql-codegen/typescript-operations": "^2.5.10",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
     "@nrwl/cypress": "15.3.0",
