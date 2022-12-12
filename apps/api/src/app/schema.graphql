@@ -1,6 +1,6 @@
 type Set {
   id: Int!
-  name: String
+  name: String!
   year: Int
   numParts: Int
 }
